@@ -1,6 +1,8 @@
 local RX9 = {}
 RX9.__index = RX9
 
+local UIS = game:GetService("UserInputService")
+
 function RX9:draw_rect(int_x, int_y, int_width, int_height, color3_color) 
     local RX9_RECT = Drawing.new("Square")
     RX9_RECT.Visible = true
@@ -124,6 +126,13 @@ function RX9:clear()
     if (game:IsLoaded()) then
         cleardrawcache()
     end
+end
+
+function RX9:is_mouse_over(positions)
+    return (
+        UIS:GetMouseLocation().X >= positions[1] and
+         UIS:GetMouseLocation().X <= (positions[1] + (positions[3] - positions[1]))) and
+          (UIS:GetMouseLocation().Y >= positions[2] and UIS:GetMouseLocation().Y <= (positions[2] + (positions[2] - positions[4])))
 end
 
 return RX9
